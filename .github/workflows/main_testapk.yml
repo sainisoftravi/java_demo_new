@@ -29,10 +29,10 @@ jobs:
         with:
           java-version: ${{ env.JAVA_VERSION }}
 
-      - name: 'Restore Project Dependencies Using Mgradle'
+      - name: 'Restore Project Dependencies Using gradle'
         shell: pwsh
         run: |
-          pushd './${{ env.PACKAGE_DIRECTORY }}'
+          pushd '${{ env.PACKAGE_DIRECTORY }}'
           gradle clean build
           popd
       
@@ -54,12 +54,12 @@ jobs:
         
 
       - name: 'Run JAR file'
+        shell: pwsh
         run: |
-          - name: 'Run JAR file'
           cd ${{ env.PACKAGE_DIRECTORY }}/build/libs
-          if (Test-Path payment-0.0.1-SNAPSHOT-plain.jar) {
-            java -jar payment-0.0.1-SNAPSHOT-plain.jar
+          if (Test-Path payment-0.01-SNAPSHOT.jar)
+          {
+            java -jar payment-0.01-SNAPSHOT.jar
           } else {
             Write-Error "JAR file not found"
           }
-          
