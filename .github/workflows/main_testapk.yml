@@ -53,13 +53,4 @@ jobs:
           respect-pom-xml: true
         
 
-      - name: 'Run JAR file'
-        shell: pwsh
-        run: |
-          cd ${{ env.PACKAGE_DIRECTORY }}/build/libs
-          if (Test-Path payment-0.01-SNAPSHOT.jar)
-          {
-            java -jar payment-0.01-SNAPSHOT.jar
-          } else {
-            Write-Error "JAR file not found"
-          }
+     
