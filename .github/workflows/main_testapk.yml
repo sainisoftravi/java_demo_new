@@ -55,10 +55,11 @@ jobs:
 
       - name: 'Run JAR file'
         run: |
+          - name: 'Run JAR file'
           cd ${{ env.PACKAGE_DIRECTORY }}/build/libs
-          java -jar payment-0.01-SNAPSHOT.jar
-          app-name: 'testapk'
-          slot-name: 'Production'
-          package: '${{ env.PACKAGE_DIRECTORY }}'
-          respect-pom-xml: true
+          if (Test-Path payment-0.0.1-SNAPSHOT-plain.jar) {
+            java -jar payment-0.0.1-SNAPSHOT-plain.jar
+          } else {
+            Write-Error "JAR file not found"
+          }
           
