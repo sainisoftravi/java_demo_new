@@ -46,7 +46,7 @@ jobs:
       - name: Deploy to Azure Function App
         run: |
           cd ${{ env.PACKAGE_DIRECTORY }}
-            func azure functionapp publish ${{ env.AZURE_FUNCTIONAPP_NAME }} --java --verbose 
+            func azure functionapp publish ${{ env.AZURE_FUNCTIONAPP_NAME }} --java --force --verbose 
          
       - name: Curl the Azure Function App
         run: |
