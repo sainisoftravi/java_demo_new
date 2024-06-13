@@ -33,12 +33,3 @@ public class Function {
     }
 }
 
-@Service
-//public class ApiService {
-
-//    public String callThirdPartyApi() {
-        
-       
-//        return "This is payment microservice.";
-  //  }
-//}
