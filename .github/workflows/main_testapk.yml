@@ -42,6 +42,7 @@ jobs:
       - name: Curl the Azure Function App
         run: |
           curl -I https://${{ env.AZURE_FUNCTIONAPP_NAME }}.azurewebsites.net
+          
       - name: Install Azure Functions Core Tools
         run: |
           npm install -g azure-functions-core-tools@3
