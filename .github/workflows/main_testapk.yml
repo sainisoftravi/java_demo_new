@@ -57,4 +57,4 @@ jobs:
         run: |
           cd ${{ env.PACKAGE_DIRECTORY }}
           # Replace with command to start your application if necessary
-          java -jar your-application.jar
+          java -jar build/libs/payment-0.0.1-SNAPSHOT-plain.jar
