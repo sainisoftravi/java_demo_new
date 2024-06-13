@@ -37,12 +37,22 @@ jobs:
           client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_4D4BFAB94B8049A681253FD7C52E83A3 }}
           tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_4D7BCAFC60FB4EB7BFB46ECD8121037F }}
           subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_1FD83D495C1D42C9BB98C09461B4AF7B }}
+      - name: Install Azure Functions Core Tools
+        run: |
+          npm install -g azure-functions-core-tools
 
-      - name: 'Run Azure Functions Action'
-        uses: Azure/functions-action@v1
-        id: fa
-        with:
-          app-name: ${{ env.AZURE_FUNCTIONAPP_NAME }}
-          slot-name: 'Production'
-          package: '${{ env.PACKAGE_DIRECTORY }}/build/libs'
-          respect-pom-xml: false # Gradle does not use pom.xml, so set to false
+      - name: 'Deploy to Azure Function App'
+        run: |
+          cd ${{ env.PACKAGE_DIRECTORY }}
+          func azure functionapp publish ${{ env.AZURE_FUNCTIONAPP_NAME }} --java --verbose
+
+      - name: 'Setup host.json'
+        run: |
+          cd ${{ env.PACKAGE_DIRECTORY }}
+          # Replace the path accordingly if host.json is in a subdirectory
+          cp ./host.json "${HOME}/host.json"  # Copy host.json to the home directory
+          func azure functionapp publish ${{ env.AZURE_FUNCTIONAPP_NAME }} --java --verbose --config-file "${HOME}/host.json"
+
+      - name: Curl the Azure Function App
+        run: |
+          curl -I https://${{ env.AZURE_FUNCTIONAPP_NAME }}.azurewebsites.net
