@@ -53,11 +53,5 @@ jobs:
           cp ./host.json "${HOME}/host.json"  # Copy host.json to the home directory
           func azure functionapp publish ${{ env.AZURE_FUNCTIONAPP_NAME }} --java --verbose --config-file "${HOME}/host.json"
 
-      - name: 'Start the application'
-        run: |
-          cd ${{ env.PACKAGE_DIRECTORY }}
-          nohup ./gradlew bootRun &
-          
-      - name: Curl the Azure Function App
-        run: |
-          curl -I https://${{ env.AZURE_FUNCTIONAPP_NAME }}.azurewebsites.net
+     - name: 'Start the application'
+        run: ' Azure
