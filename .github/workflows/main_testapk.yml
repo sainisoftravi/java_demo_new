@@ -29,7 +29,7 @@ jobs:
       - name: 'Restore Project Dependencies Using gradle'
         run: |
           cd ${{ env.PACKAGE_DIRECTORY }}
-          ./gradlew clean build
+          ./gradlew clean build --stacktrace --info
 
       - name: Login to Azure
         uses: azure/login@v1
@@ -39,10 +39,6 @@ jobs:
           subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_6461F71C2EE94DA2939E92A0A08D967F }}
 
 
-      - name: Curl the Azure Function App
-        run: |
-          curl -I https://${{ env.AZURE_FUNCTIONAPP_NAME }}.azurewebsites.net
-
       - name: Install Azure Functions Core Tools
         run: |
           npm install -g azure-functions-core-tools        
@@ -51,10 +47,7 @@ jobs:
         run: |
           cd ${{ env.PACKAGE_DIRECTORY }}
             func azure functionapp publish ${{ env.AZURE_FUNCTIONAPP_NAME }} --java --verbose 
-
-
-   
-        
+         
       - name: Curl the Azure Function App
         run: |
           curl -I https://${{ env.AZURE_FUNCTIONAPP_NAME }}.azurewebsites.net 
