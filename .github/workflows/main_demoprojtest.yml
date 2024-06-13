@@ -28,7 +28,7 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: java-app
-          path: build/libs/*.jar
+          path: build/libs/payment-0.0.1-SNAPSHOT-plain.jar
      
   deploy:
     runs-on: ubuntu-latest
