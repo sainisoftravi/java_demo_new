@@ -10,8 +10,6 @@ import org.springframework.web.client.RestTemplate;
 import org.springframework.http.MediaType;
 
 import java.util.Base64;
-import java.util.HashMap;
-import java.util.Map;
 
 @Service
 public class ApiService {
