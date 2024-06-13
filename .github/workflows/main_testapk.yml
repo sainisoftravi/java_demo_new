@@ -39,11 +39,6 @@ jobs:
           subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_6461F71C2EE94DA2939E92A0A08D967F }}
 
 
-      - name: Check Azure Function App status
-        run: |
-          az login --service-principal -u ${{ secrets.AZUREAPPSERVICE_CLIENTID }} -p ${{ secrets.AZUREAPPSERVICE_CLIENTSECRET }} --tenant ${{ secrets.AZUREAPPSERVICE_TENANTID }}
-          az functionapp show --name ${{ env.AZURE_FUNCTIONAPP_NAME }} --resource-group <YourResourceGroupName> --query "state"
-
       - name: Curl the Azure Function App
         run: |
           curl -I https://${{ env.AZURE_FUNCTIONAPP_NAME }}.azurewebsites.net
