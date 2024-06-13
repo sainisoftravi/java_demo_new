@@ -46,16 +46,12 @@ jobs:
       - name: Install Azure Functions Core Tools
         run: |
           npm install -g azure-functions-core-tools@3
-
-
-      - name: 'Start the application'
+      - name: Deploy to Azure Function App
         run: |
           cd ${{ env.PACKAGE_DIRECTORY }}
-          touch nohup.out
-          nohup ./gradlew bootRun &
-          tail -f nohup.out
-      - name: Wait for Application Startup
-        run: sleep 60s
+          func azure functionapp publish ${{ env.AZURE_FUNCTIONAPP_NAME }}
+
+   
         
       - name: Curl the Azure Function App
         run: |
