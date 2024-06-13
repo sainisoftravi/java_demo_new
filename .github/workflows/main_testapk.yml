@@ -46,4 +46,4 @@ jobs:
       - name: 'Start the application'
         run: |
           cd ${{ env.PACKAGE_DIRECTORY }}
-          ./gradlew bootRun
+          nohup ./gradlew bootRun &
