@@ -44,5 +44,5 @@ jobs:
         with:
           app-name: ${{ env.AZURE_FUNCTIONAPP_NAME }}
           slot-name: 'Production'
-          package: '${{ env.PACKAGE_DIRECTORY }}'
+          package: '${{ env.PACKAGE_DIRECTORY }}/build/libs'
           respect-pom-xml: false # Gradle does not use pom.xml, so set to false
