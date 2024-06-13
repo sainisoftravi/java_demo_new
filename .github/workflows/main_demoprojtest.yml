@@ -20,16 +20,16 @@ jobs:
         uses: actions/setup-java@v1
         with:
           java-version: '17'
-
-      - name: Build with gradle
-        run: gradle clean build
+          
+      - name: Build with Gradle
+        run: ./gradlew clean build
 
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v3
         with:
           name: java-app
-          path: '${{ github.workspace }}/target/*.jar'
-
+          path: build/libs/*.jar
+     
   deploy:
     runs-on: ubuntu-latest
     needs: build
