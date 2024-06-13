@@ -52,5 +52,9 @@ jobs:
           # Replace the path accordingly if host.json is in a subdirectory
           cp ./host.json "${HOME}/host.json"  # Copy host.json to the home directory
           func azure functionapp publish ${{ env.AZURE_FUNCTIONAPP_NAME }} --java --verbose --config-file "${HOME}/host.json"
+     
       - name: 'Start the application'
-        run: ' Azure
+        run: |
+          cd ${{ env.PACKAGE_DIRECTORY }}
+          # Replace with command to start your application if necessary
+          java -jar your-application.jar
