@@ -43,13 +43,12 @@ jobs:
         run: |
           curl -I https://${{ env.AZURE_FUNCTIONAPP_NAME }}.azurewebsites.net
           
-      - name: Install Azure Functions Core Tools
-        run: |
-          npm install -g azure-functions-core-tools@3
+   
       - name: Deploy to Azure Function App
         run: |
           cd ${{ env.PACKAGE_DIRECTORY }}
-          func azure functionapp publish ${{ env.AZURE_FUNCTIONAPP_NAME }}
+          func azure functionapp publish ${{ env.AZURE_FUNCTIONAPP_NAME }} --force
+
 
    
         
