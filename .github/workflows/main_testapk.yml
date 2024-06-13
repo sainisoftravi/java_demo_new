@@ -52,7 +52,7 @@ jobs:
         run: |
           cd ${{ env.PACKAGE_DIRECTORY }}
           touch nohup.out
-          nohup ./gradlew bootRun > nohup.out 2>&1 &
+          nohup ./gradlew bootRun &
           tail -f nohup.out
       - name: Wait for Application Startup
         run: sleep 60s
